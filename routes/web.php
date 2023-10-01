@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FrontendController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontendController::class, 'GetPost'])->name('GetPost');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::post('/createPost', [HomeController::class, 'createPost'])->name('createPost');
+Route::post('/like/post', [HomeController::class, 'Like'])->name('Like');
+Route::post('/comments/post', [HomeController::class, 'comments'])->name('comments');
