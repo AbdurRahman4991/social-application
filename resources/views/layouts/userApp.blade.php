@@ -14,10 +14,31 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />        
     </head>
     <body>
+
 <!-- Navbar -->
+      @php 
+        $Auth = Auth::user();
+      @endphp
+
     <nav class="navbar navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
+
     <a class="navbar-brand" href="#">Social Application Task</a>
+    <a href=""class="d-none">Create post</a>
+    <li class="d-none"><a href="">Home</a></li>
+    <li><a class="d-none" href="d-none">Home</a></li>
+    <li><a href="" class="d-none">Home</a></li>
+    <li class="d-none">About</li>
+    <li class="d-none">About</li>
+    <li class="d-none">About</li>
+    <li class="d-none">About</li>
+    @if($Auth==true)
+        <div class="text-white text-right">
+            <img class="" src="{{asset('/')}}avatars/{{Auth::user()->avatar}}" alt="images" style="width:30px; height:30px; border-radius:100%;">
+            <span>{{ Auth::user()->name }}</span>
+        </div>
+        @else
+        @endif
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,15 +47,30 @@
         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ route('register') }}">Register</a>
           </li>
-          <li class="nav-item">
+
+          @if($Auth==true)
+          <li>
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+            </li> 
+        @else
+            <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">Login</a>
-          </li>         
+          </li>        
+        @endif 
+       
         </ul>
         <form class="d-flex mt-3" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
