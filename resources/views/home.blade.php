@@ -39,6 +39,7 @@
                             @enderror                         
                         </div>
                         <button class="btn btn-success mt-2">Submit</button>
+                        <a href="{{route('GetPost')}}"class="btn btn-success mt-2">Back</a>
                     </form>                    
                 </div>
             </div>

@@ -24,7 +24,9 @@
   <div class="container-fluid">
 
     <a class="navbar-brand" href="#">Social Application Task</a>
-    <a href=""class="d-none">Create post</a>
+    <li><a href="{{route('home')}}"class="">Create post</a></li>
+    
+ 
     <li class="d-none"><a href="">Home</a></li>
     <li><a class="d-none" href="d-none">Home</a></li>
     <li><a href="" class="d-none">Home</a></li>
@@ -65,6 +67,7 @@
                 @csrf
             </form>
             </li> 
+            <li><a href="{{route('home')}}"class="">Create post</a></li>
         @else
             <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">Login</a>
