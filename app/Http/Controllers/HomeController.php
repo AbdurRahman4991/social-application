@@ -99,4 +99,12 @@ class HomeController extends Controller
 
         }    
     }
+
+    public function DeleteComments($id)
+    {
+        $RemoveComent = comments::where('id',$id)->delete();
+        if($RemoveComent){
+            return back();
+        }
+    }
 }

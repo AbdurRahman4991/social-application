@@ -51,8 +51,7 @@
         <div class="row">
           @php 
             $TotalLike =App\Models\like::count();
-            $Auth = Auth::user();
-            $countComments = 1;
+            $Auth = Auth::user();           
           @endphp
         @foreach($GetPost as $post)
             <div class="col-md-4">               
@@ -100,7 +99,15 @@
                 </form>
                 @foreach($post->comment as $comme)
                   
-                  <li>{{$comme->comments}}</li>
+                  <li>
+                    {{$comme->comments}} 
+                    @if($Auth==true)
+                        @if($comme->user_id == $Auth->id)
+                          <a href="{{route('DeleteComments',[$comme->id])}}" class="text-danger">remove</a>
+                        @endif
+                    @endif
+
+                  </li>
                 @endforeach
                 </div>
                 <div class="modal-footer">
