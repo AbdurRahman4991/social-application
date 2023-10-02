@@ -2,6 +2,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            @if(Auth::user()==true)    
+            <img src="{{asset('/')}}avatars/{{Auth::user()->avatar}}" alt="avatar" style="width:200px; height:200px; border-radius:100%;">
+            <p>{{ Auth::user()->name }}</p> 
+            @endif                
+        </div>
         <div class="col-md-8">
             <div class="card">
                 @if(Session::get('success'))

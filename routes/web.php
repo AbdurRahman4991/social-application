@@ -25,3 +25,5 @@ Route::post('/createPost', [HomeController::class, 'createPost'])->name('createP
 Route::post('/like/post', [HomeController::class, 'Like'])->name('Like');
 Route::post('/comments/post', [HomeController::class, 'comments'])->name('comments');
 Route::get('/delete/comments/{id}', [HomeController::class, 'DeleteComments'])->name('DeleteComments');
+
+//Route::post('/followar/post', [HomeController::class, 'Follower'])->name('Follower');

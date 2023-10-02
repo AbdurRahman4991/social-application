@@ -9,10 +9,13 @@
     <div class="container">
         <div class="row">
           @php            
-            $Auth = Auth::user();           
+            $Auth = Auth::user(); 
+            if($Auth==true){
+              $Followr = App\Models\Followers::where('follower_id',$Auth->id)->count(); 
+            }                                 
           @endphp
         @foreach($GetPost as $post)
-            <div class="col-md-4">               
+            <div class="col-md-4 mb-4">               
                 <div class="card">
                     <div class="card-body">
                         <img class="postImg" src="{{asset('/')}}images/{{$post->image}}" alt="images" />
@@ -20,7 +23,7 @@
                         <p class="content">{{ Str::limit($post->content, 100) }} </p>
                     </div>
                     <div class="card-header bg-primary ">
-                        <form action="{{route('Like')}}" method="post" class="likeBtn" >
+                        <form action="{{route('Like')}}" method="post" class="likeBtn">
                             @csrf()
                             <input type="hidden" name="like" value="like">
                             @if($Auth==true)
@@ -30,7 +33,7 @@
                             @endif                            
                             <input type="hidden" name="postId" value="{{$post->id}}">                            
                             <button class="btn btn-primary">  {{$post->Like->count()}} <i class="fa-solid fa-heart text-white"> </i></button>
-                        </form> 
+                        </form>                         
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$post->id}}"> {{$post->comment->count()}} <i class="fa-solid fa-comment text-white"> </i> </button>                                                             
                     </div>
                 </div>                

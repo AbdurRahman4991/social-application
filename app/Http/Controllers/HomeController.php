@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\post;
 use App\Models\like;
 use App\Models\comments;
+use App\Models\Followers;
 
 class HomeController extends Controller
 {
@@ -107,4 +108,34 @@ class HomeController extends Controller
             return back();
         }
     }
+
+    // Follow Section //
+
+    // public function Follower(Request $request)
+    // {        
+    //     $Follwor = $request->userId;
+    //     if($Follwor==true){
+    //         $check = Followers::where('follower_id',$Follwor)->count();
+    //         if($check==true){
+    //             $deleteFollower = Followers::where('follower_id',$Follwor)->delete();
+    //             if($deleteFollower==true){
+    //                 return back();
+    //             }
+                
+    //         }else{
+    //             $Follow = new Followers();
+    //             $Follow->follower_id = $request->userId;
+    //             $Follow->following_id = $request->followingId;
+    //             $Follow->save();
+    //             if($Follow==true)
+    //             {
+    //                 return back();
+    //             }else{
+    //                 return back();
+    //             }
+    //         }
+    //     }else{
+    //         return redirect()->route('login');
+    //     }       
+    // }
 }
